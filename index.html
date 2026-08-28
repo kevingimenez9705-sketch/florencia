@@ -129,15 +129,6 @@
     font-size: 28px;
   }
 
-  .eyebrow {
-    margin: 0 0 6px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    color: var(--accent-strong);
-    text-transform: uppercase;
-  }
-
   .header-title {
     margin: 0;
     font-size: clamp(24px, 3.4vw, 32px);
@@ -152,50 +143,6 @@
     margin: 6px 0 0;
     font-size: 14.5px;
     color: var(--text-invert-muted);
-  }
-
-  .time-box {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(94, 234, 212, 0.3);
-    border-radius: 14px;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 220px;
-  }
-
-  .time-icon { font-size: 26px; line-height: 1; }
-
-  .time-label {
-    margin: 0 0 3px;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--accent-strong);
-  }
-
-  .time-greeting {
-    margin: 0;
-    font-size: 14.5px;
-    font-weight: 600;
-    color: var(--text-invert);
-  }
-
-  .time-tag {
-    margin: 1px 0 0;
-    font-size: 12.5px;
-    color: var(--text-invert-muted);
-  }
-
-  .time-clock {
-    margin: 4px 0 0;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-variant-numeric: tabular-nums;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-invert);
   }
 
   /* ---------- Tools row ---------- */
@@ -214,7 +161,10 @@
     align-items: center;
     gap: 14px;
     box-shadow: var(--shadow);
+    text-decoration: none;
   }
+
+  .tool-card:hover .tool-title { color: var(--accent); }
 
   .tool-icon {
     width: 42px;
@@ -231,7 +181,7 @@
   .tool-b .tool-icon { background: var(--tool-b-bg); color: var(--tool-b); }
   .tool-c .tool-icon { background: var(--tool-c-bg); color: var(--tool-c); }
 
-  .tool-title { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .tool-title { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--text); transition: color 0.15s ease; }
   .tool-sub { margin: 2px 0 0; font-size: 12.5px; color: var(--text-muted); }
 
   /* ---------- Member profile ---------- */
@@ -278,19 +228,7 @@
     color: var(--text-muted);
   }
 
-  .member-link {
-    margin-top: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .member-link:hover { text-decoration: underline; }
-  .member-link:focus-visible, a:focus-visible, button:focus-visible {
+  a:focus-visible, button:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
     border-radius: 4px;
@@ -310,45 +248,34 @@
       <div class="logo-slot" aria-hidden="true">🌱</div>
       <!-- Placeholder: reemplazar el ícono de arriba por el logo del equipo cuando esté listo -->
       <div>
-        <p class="eyebrow">Equipo de Desarrollo y Cultura</p>
         <h1 class="header-title">Desarrollo <span>y Cultura</span></h1>
         <p class="header-sub">Acceso rápido al equipo y sus recursos.</p>
-      </div>
-    </div>
-
-    <div class="time-box">
-      <span class="time-icon" id="timeIcon">☀️</span>
-      <div>
-        <p class="time-label">Hora local</p>
-        <p class="time-greeting" id="greeting">Buenas tardes</p>
-        <p class="time-tag">Seguimos construyendo cultura.</p>
-        <p class="time-clock" id="clock">--:-- hs</p>
       </div>
     </div>
   </header>
 
   <section class="tools" aria-label="Herramientas del equipo">
-    <div class="tool-card tool-a">
+    <a class="tool-card tool-a" href="https://solicitud-de-busqueda-rrhh.vercel.app/" target="_blank" rel="noopener noreferrer">
       <div class="tool-icon">📋</div>
       <div>
         <p class="tool-title">Requerimiento de Personal</p>
         <p class="tool-sub">Formularios y solicitudes</p>
       </div>
-    </div>
-    <div class="tool-card tool-b">
+    </a>
+    <a class="tool-card tool-b" href="https://c-digo-de-etica.vercel.app/" target="_blank" rel="noopener noreferrer">
       <div class="tool-icon">📄</div>
       <div>
         <p class="tool-title">Documentación de Ingreso</p>
         <p class="tool-sub">Bienvenida y alta</p>
       </div>
-    </div>
-    <div class="tool-card tool-c">
+    </a>
+    <a class="tool-card tool-c" href="https://traslados-rrhh.vercel.app/" target="_blank" rel="noopener noreferrer">
       <div class="tool-icon">🔍</div>
       <div>
         <p class="tool-title">Solicitud de Búsqueda de Personal</p>
         <p class="tool-sub">Procesos de búsqueda</p>
       </div>
-    </div>
+    </a>
   </section>
 
   <section class="member" aria-label="Miembro del equipo">
@@ -357,39 +284,10 @@
     <div class="member-info">
       <p class="member-name">Florencia Contrafatti</p>
       <p class="member-role">Jefe de Desarrollo y Cultura</p>
-      <a class="member-link" href="#">Ver resultados de equipo →</a>
     </div>
   </section>
 
 </div>
 
-<script>
-  function updateClock() {
-    const now = new Date();
-    const hour = now.getHours();
-
-    const greetingEl = document.getElementById('greeting');
-    const iconEl = document.getElementById('timeIcon');
-    const clockEl = document.getElementById('clock');
-
-    let greeting = 'Buenos días';
-    let icon = '☀️';
-    if (hour >= 12 && hour < 19) {
-      greeting = 'Buenas tardes';
-      icon = '🌤️';
-    } else if (hour >= 19 || hour < 6) {
-      greeting = 'Buenas noches';
-      icon = '🌙';
-    }
-    greetingEl.textContent = greeting;
-    iconEl.textContent = icon;
-
-    const timeStr = now.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
-    clockEl.textContent = timeStr.replace('a. m.', 'a. m.').replace('p. m.', 'p. m.') + ' hs';
-  }
-
-  updateClock();
-  setInterval(updateClock, 30000);
-</script>
 </body>
 </html>
