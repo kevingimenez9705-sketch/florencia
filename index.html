@@ -203,6 +203,7 @@
   }
 
   .avatar-slot {
+    position: relative;
     width: 92px;
     height: 92px;
     border-radius: 50%;
@@ -213,6 +214,15 @@
     align-items: center;
     justify-content: center;
     font-size: 34px;
+    overflow: hidden;
+  }
+
+  .avatar-slot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .member-info { flex: 1; min-width: 200px; }
@@ -290,8 +300,12 @@
   </section>
 
   <section class="member" aria-label="Miembro del equipo">
-    <div class="avatar-slot" aria-hidden="true">🧑</div>
-    <!-- Placeholder: reemplazar el ícono de arriba por la foto de Florencia cuando esté lista -->
+    <div class="avatar-slot">
+      <span aria-hidden="true">🧑</span>
+      <!-- La foto se busca en img/florencia/foto.jpg (ver el README de esa carpeta) -->
+      <img src="img/florencia/foto.jpg" alt="Florencia Contrafatti"
+           onerror="this.remove()" />
+    </div>
     <div class="member-info">
       <p class="member-name">Florencia Contrafatti</p>
       <p class="member-role">Jefe de Desarrollo y Cultura</p>
