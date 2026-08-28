@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Desarrollo y Cultura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef1f6;
+    --surface: #ffffff;
+    --surface-soft: #f1f4f9;
+    --header-1: #0c1730;
+    --header-2: #16274a;
+    --accent: #0d9488;
+    --accent-strong: #2dd4bf;
+    --accent-soft: #d9f5f1;
+    --text: #101827;
+    --text-muted: #5b6472;
+    --text-invert: #f4f7fb;
+    --text-invert-muted: #aab6ca;
+    --border: #dde3ec;
+    --tool-a: #0d9488;   --tool-a-bg: #e2f5f2;
+    --tool-b: #4338ca;   --tool-b-bg: #eae8fd;
+    --tool-c: #b45309;   --tool-c-bg: #fbf0dd;
+    --shadow: 0 1px 2px rgba(16, 24, 39, 0.04), 0 12px 28px -16px rgba(16, 24, 39, 0.18);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0f1c;
+      --surface: #131a2b;
+      --surface-soft: #182036;
+      --header-1: #05080f;
+      --header-2: #0e1830;
+      --accent: #2dd4bf;
+      --accent-strong: #5eead4;
+      --accent-soft: #103a35;
+      --text: #e7ebf2;
+      --text-muted: #98a2b3;
+      --text-invert: #f4f7fb;
+      --text-invert-muted: #9fb0c9;
+      --border: #232d43;
+      --tool-a: #2dd4bf;   --tool-a-bg: #103a35;
+      --tool-b: #a5b4fc;   --tool-b-bg: #211f45;
+      --tool-c: #f4b860;   --tool-c-bg: #3a2c15;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 32px -18px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0a0f1c;
+    --surface: #131a2b;
+    --surface-soft: #182036;
+    --header-1: #05080f;
+    --header-2: #0e1830;
+    --accent: #2dd4bf;
+    --accent-strong: #5eead4;
+    --accent-soft: #103a35;
+    --text: #e7ebf2;
+    --text-muted: #98a2b3;
+    --text-invert: #f4f7fb;
+    --text-invert-muted: #9fb0c9;
+    --border: #232d43;
+    --tool-a: #2dd4bf;   --tool-a-bg: #103a35;
+    --tool-b: #a5b4fc;   --tool-b-bg: #211f45;
+    --tool-c: #f4b860;   --tool-c-bg: #3a2c15;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 32px -18px rgba(0, 0, 0, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 28px) 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h1, h2, .display {
+    font-family: "Sora", "IBM Plex Sans", sans-serif;
+    text-wrap: balance;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Header ---------- */
+  .header {
+    background: linear-gradient(135deg, var(--header-1), var(--header-2));
+    border-radius: 20px;
+    padding: clamp(20px, 3vw, 32px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 260px;
+  }
+
+  .logo-slot {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px dashed rgba(94, 234, 212, 0.55);
+    background: rgba(45, 212, 191, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .eyebrow {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    color: var(--accent-strong);
+    text-transform: uppercase;
+  }
+
+  .header-title {
+    margin: 0;
+    font-size: clamp(24px, 3.4vw, 32px);
+    font-weight: 700;
+    color: var(--text-invert);
+    line-height: 1.15;
+  }
+
+  .header-title span { color: var(--accent-strong); }
+
+  .header-sub {
+    margin: 6px 0 0;
+    font-size: 14.5px;
+    color: var(--text-invert-muted);
+  }
+
+  .time-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(94, 234, 212, 0.3);
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 220px;
+  }
+
+  .time-icon { font-size: 26px; line-height: 1; }
+
+  .time-label {
+    margin: 0 0 3px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+
+  .time-greeting {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-invert);
+  }
+
+  .time-tag {
+    margin: 1px 0 0;
+    font-size: 12.5px;
+    color: var(--text-invert-muted);
+  }
+
+  .time-clock {
+    margin: 4px 0 0;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-invert);
+  }
+
+  /* ---------- Tools row ---------- */
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .tool-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+  }
+
+  .tool-a .tool-icon { background: var(--tool-a-bg); color: var(--tool-a); }
+  .tool-b .tool-icon { background: var(--tool-b-bg); color: var(--tool-b); }
+  .tool-c .tool-icon { background: var(--tool-c-bg); color: var(--tool-c); }
+
+  .tool-title { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .tool-sub { margin: 2px 0 0; font-size: 12.5px; color: var(--text-muted); }
+
+  /* ---------- Member profile ---------- */
+  .member {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 16px;
+    padding: clamp(20px, 3vw, 28px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px;
+    box-shadow: var(--shadow);
+  }
+
+  .avatar-slot {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+  }
+
+  .member-info { flex: 1; min-width: 200px; }
+
+  .member-name {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 700;
+    font-family: "Sora", sans-serif;
+    color: var(--text);
+  }
+
+  .member-role {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .member-link {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .member-link:hover { text-decoration: underline; }
+  .member-link:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tool-card, .member { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .tool-card:hover, .member:hover { transform: translateY(-2px); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-slot" aria-hidden="true">🌱</div>
+      <!-- Placeholder: reemplazar el ícono de arriba por el logo del equipo cuando esté listo -->
+      <div>
+        <p class="eyebrow">Equipo de Desarrollo y Cultura</p>
+        <h1 class="header-title">Desarrollo <span>y Cultura</span></h1>
+        <p class="header-sub">Acceso rápido al equipo y sus recursos.</p>
+      </div>
+    </div>
+
+    <div class="time-box">
+      <span class="time-icon" id="timeIcon">☀️</span>
+      <div>
+        <p class="time-label">Hora local</p>
+        <p class="time-greeting" id="greeting">Buenas tardes</p>
+        <p class="time-tag">Seguimos construyendo cultura.</p>
+        <p class="time-clock" id="clock">--:-- hs</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="tools" aria-label="Herramientas del equipo">
+    <div class="tool-card tool-a">
+      <div class="tool-icon">📋</div>
+      <div>
+        <p class="tool-title">Requerimiento de Personal</p>
+        <p class="tool-sub">Formularios y solicitudes</p>
+      </div>
+    </div>
+    <div class="tool-card tool-b">
+      <div class="tool-icon">📄</div>
+      <div>
+        <p class="tool-title">Documentación de Ingreso</p>
+        <p class="tool-sub">Bienvenida y alta</p>
+      </div>
+    </div>
+    <div class="tool-card tool-c">
+      <div class="tool-icon">🔍</div>
+      <div>
+        <p class="tool-title">Solicitud de Búsqueda de Personal</p>
+        <p class="tool-sub">Procesos de búsqueda</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="member" aria-label="Miembro del equipo">
+    <div class="avatar-slot" aria-hidden="true">🧑</div>
+    <!-- Placeholder: reemplazar el ícono de arriba por la foto de Florencia cuando esté lista -->
+    <div class="member-info">
+      <p class="member-name">Florencia Contrafatti</p>
+      <p class="member-role">Jefe de Desarrollo y Cultura</p>
+      <a class="member-link" href="#">Ver resultados de equipo →</a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const hour = now.getHours();
+
+    const greetingEl = document.getElementById('greeting');
+    const iconEl = document.getElementById('timeIcon');
+    const clockEl = document.getElementById('clock');
+
+    let greeting = 'Buenos días';
+    let icon = '☀️';
+    if (hour >= 12 && hour < 19) {
+      greeting = 'Buenas tardes';
+      icon = '🌤️';
+    } else if (hour >= 19 || hour < 6) {
+      greeting = 'Buenas noches';
+      icon = '🌙';
+    }
+    greetingEl.textContent = greeting;
+    iconEl.textContent = icon;
+
+    const timeStr = now.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+    clockEl.textContent = timeStr.replace('a. m.', 'a. m.').replace('p. m.', 'p. m.') + ' hs';
+  }
+
+  updateClock();
+  setInterval(updateClock, 30000);
+</script>
+</body>
+</html>
